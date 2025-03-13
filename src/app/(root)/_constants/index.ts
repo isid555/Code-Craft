@@ -1,5 +1,7 @@
 import { Monaco } from "@monaco-editor/react";
-import { Theme } from "../../../types";
+import { Theme } from "@/types";
+import {editor} from "monaco-editor";
+import BuiltinTheme = editor.BuiltinTheme;
 
 type LanguageConfig = Record<
   string,
@@ -224,6 +226,7 @@ func main() {
 
 int main() {
     // Create vector
+   var std;
     std::vector<int> numbers = {1, 2, 3, 4, 5};
     
     // Print original numbers
@@ -423,7 +426,7 @@ export const THEME_DEFINITONS = {
 export const defineMonacoThemes = (monaco: Monaco) => {
   Object.entries(THEME_DEFINITONS).forEach(([themeName, themeData]) => {
     monaco.editor.defineTheme(themeName, {
-      base: themeData.base,
+      base: themeData.base as BuiltinTheme,
       inherit: themeData.inherit,
       rules: themeData.rules.map((rule) => ({
         ...rule,
